@@ -14,7 +14,7 @@ public class ThirdPersonController : MonoBehaviour {
     private float slowDown = 0f;
     public Vector3 jump;
     public float jumpForce = 2.0f;
-    //public GameObject projectile;
+    public GameObject projectile;
     public Animator anim;
 
     [Header("Boolean Conditions")]
@@ -138,18 +138,18 @@ public class ThirdPersonController : MonoBehaviour {
 
     void FixedUpdate() {
         /*if (won == false){*/
-        //anim.SetBool("Running", false);
+        GameObject sp;
+        Rigidbody body;
 
         if (Input.GetKey("p")){
             anim.Play("Golf Drive");
-            
-            GameObject sp;
-            Rigidbody body;
+            playerCharacter.velocity = transform.forward * 0;
 
             sp = Instantiate(projectile, playerCharacter.transform.position + (transform.forward * 2) + (transform.up * 2), Quaternion.identity);
             body = sp.AddComponent(typeof(Rigidbody)) as Rigidbody;
             body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);
-            GameStateManager.instance.expendFuel(1.5f);
+            //GameStateManager.instance.expendFuel(1.5f);
+
         }
 
         if (Input.GetKey("f")){
@@ -164,9 +164,8 @@ public class ThirdPersonController : MonoBehaviour {
         }
 
         //Gravity
-        if (isGrounded == false)
-        {
-            playerCharacter.AddForce(Physics.gravity * 0.05f, ForceMode.Force);
+        if (isGrounded == false){
+            playerCharacter.AddForce(Physics.gravity * 0.5f, ForceMode.Force);
         }
 
         //Camera
@@ -185,7 +184,7 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (isGrounded == true) {
             if (Input.GetKey("w")) {
-                anim.SetBool("Heavy Attack", false);
+                //anim.SetBool("Heavy Attack", false);
                 playerCharacter.velocity = transform.forward * speed;
                 anim.SetBool("Running", true);
                 slowDown = 0.5f;
@@ -248,7 +247,6 @@ public class ThirdPersonController : MonoBehaviour {
             attacking =  false;
         }*/
     }
-        
     void OnCollisionStay(Collision Collider){
         if (Collider.gameObject.tag == "Terrain"){
             isGrounded = true;

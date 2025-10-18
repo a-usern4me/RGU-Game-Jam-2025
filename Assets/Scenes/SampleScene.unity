@@ -252,6 +252,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 241840509}
   jump: {x: 0, y: 0, z: 0}
   jumpForce: 2
+  projectile: {fileID: 0}
   anim: {fileID: 0}
   worldSpace: 1
   isGrounded: 1
@@ -280,6 +281,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 1330092468}
   jump: {x: 0, y: 0, z: 0}
   jumpForce: 2
+  projectile: {fileID: 0}
   anim: {fileID: 437001059}
   worldSpace: 1
   isGrounded: 1
@@ -330,12 +332,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4743523076812310332, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
+      propertyPath: m_Height
+      value: 2.6387787
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743523076812310332, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
+      propertyPath: m_Center.y
+      value: 1.1806107
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743523076812310332, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4743523076812310335, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743523076812310335, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743523076812310335, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
       propertyPath: m_Constraints
-      value: 32
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 4743523076812310335, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
       propertyPath: m_Interpolate
@@ -705,7 +723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -1009,6 +1027,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 1330092468}
   jump: {x: 0, y: 0, z: 0}
   jumpForce: 2
+  projectile: {fileID: 121332437015558294, guid: ef1b9075e97317d4a87e2c58e1cb1f01, type: 3}
   anim: {fileID: 437001059}
   worldSpace: 1
   isGrounded: 1
@@ -1053,9 +1072,10 @@ GameObject:
   - component: {fileID: 1445920970}
   - component: {fileID: 1445920974}
   - component: {fileID: 1445920973}
+  - component: {fileID: 1445920975}
   m_Layer: 6
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1165,7 +1185,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1190,6 +1210,27 @@ TerrainCollider:
   serializedVersion: 2
   m_TerrainData: {fileID: 0}
   m_EnableTreeColliders: 1
+--- !u!65 &1445920975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445920968}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2.4088292, z: 1.0000002}
+  m_Center: {x: 0.000000076293944, y: 0.2044145, z: -0.000000076293944}
 --- !u!1001 &8719573595815990466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1278,7 +1319,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 546424368}
   - {fileID: 8719573595815990466}
-  - {fileID: 1445920969}
   - {fileID: 484748063}
   - {fileID: 592726729}
+  - {fileID: 1445920969}
   - {fileID: 102167379}

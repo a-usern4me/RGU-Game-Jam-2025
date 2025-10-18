@@ -9,12 +9,12 @@ using Cinemachine;
 public class ThirdPersonController : MonoBehaviour {
     [Header("Variables")]
     public Rigidbody playerCharacter;
-    public GameObject enemy;
+    //public GameObject enemy;
     private float speed;
     private float slowDown = 0f;
     public Vector3 jump;
     public float jumpForce = 2.0f;
-    public GameObject projectile;
+    //public GameObject projectile;
     public Animator anim;
 
     [Header("Boolean Conditions")]
@@ -69,7 +69,7 @@ public class ThirdPersonController : MonoBehaviour {
         //kevinBangers.Play();*/
     }
 
-    void Update() {
+    void Update(){
         /*camera1.GetComponent<CinemachineVirtualCamera>().enabled = true;
         camera2.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
@@ -138,8 +138,15 @@ public class ThirdPersonController : MonoBehaviour {
 
     void FixedUpdate() {
         /*if (won == false){*/
+        //anim.SetBool("Running", false);
+
+        if (Input.GetKey("p")){
+            anim.Play("Attack1");
+        }
+
         //Gravity
-        if (isGrounded == false) {
+        if (isGrounded == false)
+        {
             playerCharacter.AddForce(Physics.gravity * 0.05f, ForceMode.Force);
         }
 
@@ -165,18 +172,18 @@ public class ThirdPersonController : MonoBehaviour {
 
             } else {
                 anim.SetBool("Running", false);
+                //playerCharacter.velocity = transform.forward * 0;
 
-                if (slowDown <= 0) {
+                if (slowDown <= 0){
                     playerCharacter.velocity = transform.forward * 0;
 
-                } else {
-                    /*dirt.Play();*/
-                }
+                } /*else {
+                    dirt.Play();
+                }*/
             }
 
-            if (Input.GetKey("s")) {
+            if (Input.GetKey("s")){
                 playerCharacter.velocity = -transform.forward * 5f;
-                anim.SetBool("Running", true);
             }
 
             /*//Dash
@@ -200,23 +207,15 @@ public class ThirdPersonController : MonoBehaviour {
             } else {
                 dashing = false;
                 particle.Stop();
-            }
-
-            if (Input.GetKey(KeyCode.Mouse1) && GameStateManager.instance.GetFuel() <= 2f && (dashing == false)){
-                playerCharacter.velocity = transform.forward * 0;
-                GameStateManager.instance.Refuel(Time.deltaTime);
-                anim.SetBool("Refuelling", true);
-
-            } else {
-                anim.SetBool("Refuelling", false);
             }*/
+
         }
 
         //Actions
         if (Input.GetKey("space") && (isGrounded == true)) {
             playerCharacter.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-            anim.SetBool("Jumping", true);
+            /*anim.SetBool("Jumping", true);*/
             /*dirt.Stop();*/
         }
 
@@ -246,6 +245,7 @@ public class ThirdPersonController : MonoBehaviour {
             anim.SetBool("Attacking", false);
         }*/
     }
+
     void OnCollisionExit(Collision Collider){
         if (Collider.gameObject.tag == "Terrain"){
             isGrounded = false;

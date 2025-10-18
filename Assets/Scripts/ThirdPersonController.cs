@@ -172,9 +172,9 @@ public class ThirdPersonController : MonoBehaviour {
             anim.Play("Golf Drive");
             playerCharacter.velocity = transform.forward * 0;
         
-            sp = Instantiate(projectile, playerCharacter.transform.position + (transform.forward * 2) + (transform.up * 2), Quaternion.identity);
+            /*sp = Instantiate(projectile, playerCharacter.transform.position + (transform.forward * 2) + (transform.up * 2), Quaternion.identity);
             body = sp.AddComponent(typeof(Rigidbody)) as Rigidbody;
-            body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);
+            body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);*/
             
             //GameStateManager.instance.expendFuel(1.5f);
 
@@ -190,6 +190,7 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (Input.GetKey("l")){
             anim.Play("Smash");
+            playerCharacter.velocity = transform.forward * 0;
         } else {
             anim.SetBool("Smash", false);
         }

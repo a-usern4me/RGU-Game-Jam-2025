@@ -55,9 +55,9 @@ public class ThirdPersonController : MonoBehaviour {
     public AudioClip bg;
     public AudioClip victory;*/
 
-    void Start(){
+    void Start() {
         playerCharacter = this.GetComponent<Rigidbody>();
-        /*anim = this.GetComponent<Animator>();*/
+        anim = this.GetComponent<Animator>();
         speed = 15f;
         jump = new Vector3(0.0f, 5.0f, 0.0f);
         /*GameStateManager.instance.SetMaxHealth(5);
@@ -69,7 +69,7 @@ public class ThirdPersonController : MonoBehaviour {
         //kevinBangers.Play();*/
     }
 
-    void Update(){
+    void Update() {
         /*camera1.GetComponent<CinemachineVirtualCamera>().enabled = true;
         camera2.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
@@ -136,120 +136,120 @@ public class ThirdPersonController : MonoBehaviour {
         }*/
     }
 
-    void FixedUpdate(){
+    void FixedUpdate() {
         /*if (won == false){*/
-            //Gravity
-            if (isGrounded == false){
-                playerCharacter.AddForce(Physics.gravity * 0.05f, ForceMode.Force);
-            }
+        //Gravity
+        if (isGrounded == false) {
+            playerCharacter.AddForce(Physics.gravity * 0.05f, ForceMode.Force);
+        }
 
-            //Camera
-            if (Input.GetKey("a")){
-                transform.Rotate(new Vector3(0, -8, 0) * Time.deltaTime * speed, Space.World);
-            }
+        //Camera
+        if (Input.GetKey("a")) {
+            transform.Rotate(new Vector3(0, -8, 0) * Time.deltaTime * speed, Space.World);
+        }
 
-            if (Input.GetKey("d")){
-                transform.Rotate(new Vector3(0, 8, 0) * Time.fixedDeltaTime * speed, Space.World);
-            }
+        if (Input.GetKey("d")) {
+            transform.Rotate(new Vector3(0, 8, 0) * Time.fixedDeltaTime * speed, Space.World);
+        }
 
-            //Movement
-            if (slowDown > 0){
-                slowDown -= Time.deltaTime;
-            }
+        //Movement
+        if (slowDown > 0) {
+            slowDown -= Time.deltaTime;
+        }
 
-            if (isGrounded == true){
-                if (Input.GetKey("w")){
-                    playerCharacter.velocity = transform.forward * speed;
-                    anim.SetBool("Running", true);
-                    slowDown = 0.5f;
-                
-                } else {
-                    /*anim.SetBool("Running", false);*/
-              
-                    if (slowDown <= 0){
-                        playerCharacter.velocity = transform.forward * 0;
-
-                    } else {
-                        /*dirt.Play();*/
-                    }
-                }
-
-                if (Input.GetKey("s")){
-                    playerCharacter.velocity = -transform.forward * 5f;
-                    /*anim.SetBool("Running", true);*/
-                }
-
-                /*//Dash
-                if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.LeftShift) && GameStateManager.instance.GetFuel() > 0){
-                    GameStateManager.instance.expendFuel(Time.deltaTime);
-                    playerCharacter.velocity = transform.forward * 0;
-                    particle.Play();
-
-                    if (accessibility == true){
-                        enemy = GameObject.FindWithTag("Enemy");
-                        playerCharacter.transform.LookAt(enemy.transform);
-
-                    }
-
-                    anim.SetBool("Running", true);
-                    dirt.Play();
-                    this.GetComponent<AudioSource>().Play();
-                    playerCharacter.AddForce(transform.forward.normalized * 2000);
-                    dashing = true;
-
-                } else {
-                    dashing = false;
-                    particle.Stop();
-                }
-
-                if (Input.GetKey(KeyCode.Mouse1) && GameStateManager.instance.GetFuel() <= 2f && (dashing == false)){
-                    playerCharacter.velocity = transform.forward * 0;
-                    GameStateManager.instance.Refuel(Time.deltaTime);
-                    anim.SetBool("Refuelling", true);
-
-                } else {
-                    anim.SetBool("Refuelling", false);
-                }*/
-            }
-
-            //Actions
-            if (Input.GetKey("space") && (isGrounded == true)){
-                playerCharacter.AddForce(jump * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
-                anim.SetBool("Jumping", true);
-                /*dirt.Stop();*/
-            }
-
-            /*if (Input.GetKey(KeyCode.Mouse0) && dashing == false){
-                anim.Play("Attack1");
-                attacking = true;
-                particle.Play();
+        if (isGrounded == true) {
+            if (Input.GetKey("w")) {
+                playerCharacter.velocity = transform.forward * speed;
+                anim.SetBool("Running", true);
+                slowDown = 0.5f;
 
             } else {
-                attacking =  false;
+                anim.SetBool("Running", false);
+
+                if (slowDown <= 0) {
+                    playerCharacter.velocity = transform.forward * 0;
+
+                } else {
+                    /*dirt.Play();*/
+                }
+            }
+
+            if (Input.GetKey("s")) {
+                playerCharacter.velocity = -transform.forward * 5f;
+                anim.SetBool("Running", true);
+            }
+
+            /*//Dash
+            if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.LeftShift) && GameStateManager.instance.GetFuel() > 0){
+                GameStateManager.instance.expendFuel(Time.deltaTime);
+                playerCharacter.velocity = transform.forward * 0;
+                particle.Play();
+
+                if (accessibility == true){
+                    enemy = GameObject.FindWithTag("Enemy");
+                    playerCharacter.transform.LookAt(enemy.transform);
+
+                }
+
+                anim.SetBool("Running", true);
+                dirt.Play();
+                this.GetComponent<AudioSource>().Play();
+                playerCharacter.AddForce(transform.forward.normalized * 2000);
+                dashing = true;
+
+            } else {
+                dashing = false;
+                particle.Stop();
+            }
+
+            if (Input.GetKey(KeyCode.Mouse1) && GameStateManager.instance.GetFuel() <= 2f && (dashing == false)){
+                playerCharacter.velocity = transform.forward * 0;
+                GameStateManager.instance.Refuel(Time.deltaTime);
+                anim.SetBool("Refuelling", true);
+
+            } else {
+                anim.SetBool("Refuelling", false);
             }*/
         }
-    }
 
-    /*void OnCollisionStay(Collision Collider){
+        //Actions
+        if (Input.GetKey("space") && (isGrounded == true)) {
+            playerCharacter.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+            anim.SetBool("Jumping", true);
+            /*dirt.Stop();*/
+        }
+
+        /*if (Input.GetKey(KeyCode.Mouse0) && dashing == false){
+            anim.Play("Attack1");
+            attacking = true;
+            particle.Play();
+
+        } else {
+            attacking =  false;
+        }*/
+    }
+        
+    void OnCollisionStay(Collision Collider){
         if (Collider.gameObject.tag == "Terrain"){
             isGrounded = true;
-            /*anim.SetBool("Jumping", false);
+            /*anim.SetBool("Jumping", false);*/
         }
     }
-
+    
     //Attacks
-    /*void OnCollisionEnter(Collision Collider){
+    void OnCollisionEnter(Collision Collider){
         /*if (Collider.gameObject.tag == "Enemy" && dashing == true){
             anim.SetBool("Attacking", true);
             
         } else {
             anim.SetBool("Attacking", false);
-        }
+        }*/
     }
-
     void OnCollisionExit(Collision Collider){
         if (Collider.gameObject.tag == "Terrain"){
             isGrounded = false;
         }
-    }*/
+    }
+
+}

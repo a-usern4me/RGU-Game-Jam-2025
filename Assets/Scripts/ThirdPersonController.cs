@@ -141,7 +141,26 @@ public class ThirdPersonController : MonoBehaviour {
         //anim.SetBool("Running", false);
 
         if (Input.GetKey("p")){
-            anim.Play("Attack1");
+            anim.Play("Golf Drive");
+            
+            GameObject sp;
+            Rigidbody body;
+
+            sp = Instantiate(projectile, playerCharacter.transform.position + (transform.forward * 2) + (transform.up * 2), Quaternion.identity);
+            body = sp.AddComponent(typeof(Rigidbody)) as Rigidbody;
+            body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);
+            GameStateManager.instance.expendFuel(1.5f);
+        }
+
+        if (Input.GetKey("f")){
+            anim.Play("Goalkeeper Diving Save");
+            playerCharacter.velocity = transform.forward * 0;
+            playerCharacter.AddForce(Vector3.right * 2000);
+            
+        }
+
+        else{
+            anim.SetBool("Heavy Attack", false);
         }
 
         //Gravity
@@ -166,13 +185,14 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (isGrounded == true) {
             if (Input.GetKey("w")) {
+                anim.SetBool("Heavy Attack", false);
                 playerCharacter.velocity = transform.forward * speed;
                 anim.SetBool("Running", true);
                 slowDown = 0.5f;
 
             } else {
                 anim.SetBool("Running", false);
-                //playerCharacter.velocity = transform.forward * 0;
+                playerCharacter.velocity = transform.forward * 0;
 
                 if (slowDown <= 0){
                     playerCharacter.velocity = transform.forward * 0;

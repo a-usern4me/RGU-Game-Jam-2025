@@ -24,6 +24,11 @@ public class ThirdPersonController : MonoBehaviour {
     private float attackFrames = 1.0f;
 
     private float MP;
+
+    private bool fire;
+    private bool ice;
+
+    private float timer = 5f;
     public bool attacking = false;
 
     /*public bool accessibility {get;set;}
@@ -75,7 +80,7 @@ public class ThirdPersonController : MonoBehaviour {
     void Update(){
         MP = attackFrames;
         MP = Mathf.Round(MP * 10.0f) * 0.1f;
-        Debug.Log((attackFrames));
+        //Debug.Log((attackFrames));
 
         if (Input.GetKey("w") && attacking == false){
             attackFrames += 0.001f;
@@ -168,6 +173,7 @@ public class ThirdPersonController : MonoBehaviour {
             anim.SetBool("Running", false);
             anim.SetBool("Heavy Attack", true);
             attacking = true;
+            ice = true;
             attackFrames -= Time.deltaTime;
             anim.Play("Golf Drive");
             playerCharacter.velocity = transform.forward * 0;
@@ -190,6 +196,7 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (Input.GetKey("l")){
             anim.Play("Smash");
+            fire = true;
             playerCharacter.velocity = transform.forward * 0;
         } else {
             anim.SetBool("Smash", false);

@@ -21,7 +21,9 @@ public class ThirdPersonController : MonoBehaviour {
     public bool worldSpace;
     public bool isGrounded;
 
-    public float attackFrames = 150.0f;
+    private float attackFrames = 1.0f;
+
+    private float MP;
     public bool attacking = false;
 
     /*public bool accessibility {get;set;}
@@ -56,7 +58,6 @@ public class ThirdPersonController : MonoBehaviour {
     public AudioSource kevinBangers;
     public AudioClip bg;
     public AudioClip victory;*/
-
     void Start() {
         playerCharacter = this.GetComponent<Rigidbody>();
         anim = this.GetComponent<Animator>();
@@ -72,9 +73,16 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void Update(){
-        if (attacking = false){
-            attackFrames += Time.deltaTime;
+        MP = attackFrames;
+        MP = Mathf.Round(MP * 10.0f) * 0.1f;
+        Debug.Log((attackFrames));
+
+        if (Input.GetKey("w") && attacking == false){
+            attackFrames += 0.001f;
         }
+        /*if (attacking = false){
+            attackFrames += Time.deltaTime;
+        }*/
        
         /*camera1.GetComponent<CinemachineVirtualCamera>().enabled = true;
         camera2.GetComponent<CinemachineVirtualCamera>().enabled = false;
@@ -144,10 +152,19 @@ public class ThirdPersonController : MonoBehaviour {
 
     void FixedUpdate() {
         /*if (won == false){*/
+
+        if ((attackFrames) <= 0f){
+            attackFrames = 0f;
+        }
+
+        if ((attackFrames) >= 1f){
+            attackFrames = 1f;
+        }
+
         GameObject sp;
         Rigidbody body;
 
-        if (Input.GetKey("p") && attackFrames >= 0f){
+        if (Input.GetKey("p") && attackFrames > 0f){
             anim.SetBool("Running", false);
             anim.SetBool("Heavy Attack", true);
             attacking = true;
@@ -159,11 +176,22 @@ public class ThirdPersonController : MonoBehaviour {
             body = sp.AddComponent(typeof(Rigidbody)) as Rigidbody;
             body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);
             
-
             //GameStateManager.instance.expendFuel(1.5f);
 
         } else {
             attacking = false;
+        }
+
+        if (Input.GetKey("o")){
+            anim.Play("Uppercut");
+        } else {
+            anim.SetBool("Uppercut", false);
+        }
+
+        if (Input.GetKey("l")){
+            anim.Play("Smash");
+        } else {
+            anim.SetBool("Smash", false);
         }
 
         if (Input.GetKey("f")){
@@ -198,7 +226,6 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (isGrounded == true) {
             if (Input.GetKey("w") && attacking == false) {
-                //anim.SetBool("Heavy Attack", false);
                 playerCharacter.velocity = transform.forward * speed;
                 anim.SetBool("Running", true);
                 slowDown = 0.5f;

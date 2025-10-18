@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
-/*using Cinemachine;*/
+using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour {
     [Header("Variables")]
@@ -143,19 +143,19 @@ public class ThirdPersonController : MonoBehaviour {
                 playerCharacter.AddForce(Physics.gravity * 0.05f, ForceMode.Force);
             }
 
-            /*//Camera
+            //Camera
             if (Input.GetKey("a")){
                 transform.Rotate(new Vector3(0, -8, 0) * Time.deltaTime * speed, Space.World);
             }
 
             if (Input.GetKey("d")){
                 transform.Rotate(new Vector3(0, 8, 0) * Time.fixedDeltaTime * speed, Space.World);
-            }*/
+            }
 
-            /*//Movement
+            //Movement
             if (slowDown > 0){
                 slowDown -= Time.deltaTime;
-            }*/
+            }
 
             if (isGrounded == true){
                 if (Input.GetKey("w")){
@@ -175,7 +175,7 @@ public class ThirdPersonController : MonoBehaviour {
                 }
 
                 if (Input.GetKey("s")){
-                    playerCharacter.velocity = -transform.forward * speed;
+                    playerCharacter.velocity = -transform.forward * 5f;
                     /*anim.SetBool("Running", true);*/
                 }
 

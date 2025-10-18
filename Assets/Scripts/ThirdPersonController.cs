@@ -20,9 +20,11 @@ public class ThirdPersonController : MonoBehaviour {
     [Header("Boolean Conditions")]
     public bool worldSpace;
     public bool isGrounded;
-    /*public bool dashing = false;
+
+    public float attackFrames = 150.0f;
     public bool attacking = false;
-    public bool accessibility {get;set;}
+
+    /*public bool accessibility {get;set;}
     public bool won = false;
 
     [Header("Health Bar")]
@@ -70,6 +72,10 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void Update(){
+        if (attacking = false){
+            attackFrames += Time.deltaTime;
+        }
+       
         /*camera1.GetComponent<CinemachineVirtualCamera>().enabled = true;
         camera2.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
@@ -141,15 +147,23 @@ public class ThirdPersonController : MonoBehaviour {
         GameObject sp;
         Rigidbody body;
 
-        if (Input.GetKey("p")){
+        if (Input.GetKey("p") && attackFrames >= 0f){
+            anim.SetBool("Running", false);
+            anim.SetBool("Heavy Attack", true);
+            attacking = true;
+            attackFrames -= Time.deltaTime;
             anim.Play("Golf Drive");
             playerCharacter.velocity = transform.forward * 0;
-
+        
             sp = Instantiate(projectile, playerCharacter.transform.position + (transform.forward * 2) + (transform.up * 2), Quaternion.identity);
             body = sp.AddComponent(typeof(Rigidbody)) as Rigidbody;
             body.AddRelativeForce(playerCharacter.transform.forward.normalized * 2000);
+            
+
             //GameStateManager.instance.expendFuel(1.5f);
 
+        } else {
+            attacking = false;
         }
 
         if (Input.GetKey("f")){
@@ -183,7 +197,7 @@ public class ThirdPersonController : MonoBehaviour {
         }
 
         if (isGrounded == true) {
-            if (Input.GetKey("w")) {
+            if (Input.GetKey("w") && attacking == false) {
                 //anim.SetBool("Heavy Attack", false);
                 playerCharacter.velocity = transform.forward * speed;
                 anim.SetBool("Running", true);

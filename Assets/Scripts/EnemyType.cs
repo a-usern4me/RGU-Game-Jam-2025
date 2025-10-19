@@ -26,13 +26,13 @@ public class EnemyType : MonoBehaviour{
 
         if (fire == true){
             Debug.Log("FIRE");
-            target = GameObject.FindWithTag("PlayerIce");
+            target = GameObject.FindWithTag("PlayerFire");
         } else if (fire == false){
             Debug.Log("ICE");
-            //target = GameObject.FindWithTag("PlayerFire");
+            target = GameObject.FindWithTag("PlayerIce");
         }
         Enemy.transform.LookAt(target.transform);
-        Enemy.velocity = transform.forward * 10;
+        Enemy.velocity = transform.forward * 5f;
     }
 
     void ChangeType(){

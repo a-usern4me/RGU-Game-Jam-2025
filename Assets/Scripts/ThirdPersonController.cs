@@ -44,6 +44,9 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void Update(){
+        if (Input.GetKey(KeyCode.Escape)){
+            SceneManager.LoadScene("TitleScreen");
+        }
         playerHealthBar.value = GameStateManager.instance.GetPlayerHealth();
 
         MP = attackFrames;

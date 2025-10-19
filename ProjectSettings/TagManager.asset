@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collide
   - Terrain
+  - PlayerFire
+  - PlayerIce
   layers:
   - Default
   - TransparentFX

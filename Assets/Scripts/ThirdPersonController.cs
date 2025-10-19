@@ -30,7 +30,7 @@ public class ThirdPersonController : MonoBehaviour {
 
     [Header("Health Bar")]
     public int playerHealth = 5;
-    public Slider playerHealthBar;
+    //public Slider playerHealthBar;
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class ThirdPersonController : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape)){
             SceneManager.LoadScene("TitleScreen");
         }
-        playerHealthBar.value = GameStateManager.instance.GetPlayerHealth();
+        //playerHealthBar.value = GameStateManager.instance.GetPlayerHealth();
 
         MP = attackFrames;
         MP = Mathf.Round(MP * 10.0f) * 0.1f;

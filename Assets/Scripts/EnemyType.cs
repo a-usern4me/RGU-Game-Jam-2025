@@ -8,11 +8,10 @@ public class EnemyType : MonoBehaviour
     public Rigidbody Enemy;
     private float timer = 10f;
     public bool fire;
-    //public Material flame;
-    //public Material frost;
-    //private MeshRenderer element;
 
     public GameObject Object;
+
+    public GameObject target;
 
     void Start()
     {
@@ -25,6 +24,9 @@ public class EnemyType : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
+        //Enemy.transform.LookAt(target.transform);
+        //Enemy.velocity = transform.forward * 10;
+
         if (timer <= 0)
         {
             ChangeType();
@@ -34,10 +36,12 @@ public class EnemyType : MonoBehaviour
         if (fire == true)
         {
             Debug.Log("FIRE");
+            target = GameObject.FindWithTag("PlayerIce");
         }
         else
         {
             Debug.Log("ICE");
+            target = GameObject.FindWithTag("PlayerFire");
         }
     }
 
@@ -46,7 +50,7 @@ public class EnemyType : MonoBehaviour
         {
             //fire = false;
             //element.material = frost;
-            Object.GetComponent<Renderer>().material.color = Color.red;
+            Object.GetComponent<Renderer>().material.color = Color.blue;
             fire = false;
             //Object.GetComponent<MeshRenderer>().material = frost;
             //material.SetFloat("_Color", frost);
@@ -58,7 +62,7 @@ public class EnemyType : MonoBehaviour
             //Object.GetComponent<MeshRenderer>().material = flame;
             //element.GetComponent<MeshRenderer>().material = flame;
             //element.material = flame;
-            Object.GetComponent<Renderer>().material.color = Color.blue;
+            Object.GetComponent<Renderer>().material.color = Color.red;
             fire = true;
         }
     }

@@ -1617,6 +1617,7 @@ MonoBehaviour:
   Enemy: {fileID: 1306138538}
   fire: 0
   Object: {fileID: 1652970899}
+  target: {fileID: 1330092465}
 --- !u!54 &1306138538
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2137,6 +2138,7 @@ MonoBehaviour:
   Enemy: {fileID: 1643593327}
   fire: 0
   Object: {fileID: 2114979265}
+  target: {fileID: 1330092465}
 --- !u!54 &1643593327
 Rigidbody:
   m_ObjectHideFlags: 0

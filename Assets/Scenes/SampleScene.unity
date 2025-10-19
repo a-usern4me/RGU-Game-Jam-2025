@@ -3275,7 +3275,7 @@ MonoBehaviour:
   attacking: 0
   Object: {fileID: 1192624548}
   playerHealth: 5
-  playerHealthBar: {fileID: 316838168}
+  playerHealthBar: {fileID: 0}
 --- !u!95 &1330092475
 Animator:
   serializedVersion: 5

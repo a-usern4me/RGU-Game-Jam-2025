@@ -8,14 +8,17 @@ public class EnemyType : MonoBehaviour
     public Rigidbody Enemy;
     private float timer = 10f;
     public bool fire;
-    public Material flame;
-    public Material frost;
-    private MeshRenderer element;
+    //public Material flame;
+    //public Material frost;
+    //private MeshRenderer element;
+
+    public GameObject Object;
 
     void Start()
     {
-        element.GetComponent<MeshRenderer>();
-        element.material = flame;    
+        /*element.GetComponent<MeshRenderer>();
+        element.material = flame;*/
+        Object.GetComponent<Renderer>().material.color = Color.red;
     }
 
     void Update()
@@ -42,7 +45,9 @@ public class EnemyType : MonoBehaviour
         if (fire == true)
         {
             //fire = false;
-            element.material = frost;
+            //element.material = frost;
+            Object.GetComponent<Renderer>().material.color = Color.red;
+            fire = false;
             //Object.GetComponent<MeshRenderer>().material = frost;
             //material.SetFloat("_Color", frost);
             //element.GetComponent<MeshRenderer>().material = frost;
@@ -52,7 +57,9 @@ public class EnemyType : MonoBehaviour
             //fire = true;
             //Object.GetComponent<MeshRenderer>().material = flame;
             //element.GetComponent<MeshRenderer>().material = flame;
-            element.material = flame;
+            //element.material = flame;
+            Object.GetComponent<Renderer>().material.color = Color.blue;
+            fire = true;
         }
     }
 

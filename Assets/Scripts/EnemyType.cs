@@ -24,12 +24,10 @@ public class EnemyType : MonoBehaviour{
             timer += 10f;
         }
 
-        if (fire == true)
-        {
+        if (fire == true){
             Debug.Log("FIRE");
             target = GameObject.FindWithTag("PlayerIce");
         } else if (fire == false){
-
             Debug.Log("ICE");
             //target = GameObject.FindWithTag("PlayerFire");
         }
@@ -40,7 +38,7 @@ public class EnemyType : MonoBehaviour{
     void ChangeType(){
         if (fire == true){
             Object.GetComponent<Renderer>().material.color = Color.blue;
-            fire = false;
+            //fire = false;
         }
         else if (fire == false){
             Object.GetComponent<Renderer>().material.color = Color.red;
@@ -49,9 +47,9 @@ public class EnemyType : MonoBehaviour{
     }
 
     void OnCollisionEnter(Collision Collider){
-        if (Collider.gameObject.tag == "PlayerFire" && fire == true){
+        if (Collider.gameObject.tag == "PlayerIce" && fire == true){
             Destroy(this.gameObject);
-        } else if (Collider.gameObject.tag == "PlayerIce" && fire == false) {
+        } else if (Collider.gameObject.tag == "PlayerFire" && fire == false) {
             Destroy(this.gameObject);
         }
     }

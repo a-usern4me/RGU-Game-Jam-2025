@@ -65,11 +65,13 @@ public class ThirdPersonController : MonoBehaviour {
     public AudioSource kevinBangers;
     public AudioClip bg;
     public AudioClip victory;*/
-    void Start() {
+    void Start()
+    {
         playerCharacter = this.GetComponent<Rigidbody>();
         anim = this.GetComponent<Animator>();
         speed = 15f;
         jump = new Vector3(0.0f, 5.0f, 0.0f);
+        Object.GetComponent<Renderer>().material.color = Color.red;
         /*GameStateManager.instance.SetMaxHealth(5);
         //fuelText.text = GameStateManager.instance.GetFuel().ToString();
         GameStateManager.instance.Refuel(fuel);

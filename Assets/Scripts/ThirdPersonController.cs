@@ -31,6 +31,8 @@ public class ThirdPersonController : MonoBehaviour {
     /*private float timer = 5f;*/
     public bool attacking = false;
 
+    public GameObject Object;
+
     /*public bool accessibility {get;set;}
     public bool won = false;
 
@@ -174,6 +176,7 @@ public class ThirdPersonController : MonoBehaviour {
             anim.SetBool("Heavy Attack", true);
             attacking = true;
             ice = true;
+            Object.GetComponent<Renderer>().material.color = Color.blue;
             attackFrames -= Time.deltaTime;
             anim.Play("Golf Drive");
             playerCharacter.tag = "PlayerIce";
@@ -189,9 +192,13 @@ public class ThirdPersonController : MonoBehaviour {
             attacking = false;
         }
 
-        if (Input.GetKey("o")){
+        if (Input.GetKey("o"))
+        {
             anim.Play("Uppercut");
-        } else {
+             Object.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+        else
+        {
             anim.SetBool("Uppercut", false);
         }
 
@@ -199,6 +206,7 @@ public class ThirdPersonController : MonoBehaviour {
             anim.SetBool("Running", false);
             anim.Play("Smash");
             fire = true;
+             Object.GetComponent<Renderer>().material.color = Color.red;
             playerCharacter.tag = "PlayerFire";
             playerCharacter.velocity = transform.forward * 0;
         } else {

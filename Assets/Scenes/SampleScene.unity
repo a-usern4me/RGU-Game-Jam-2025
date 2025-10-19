@@ -325,6 +325,7 @@ MonoBehaviour:
   worldSpace: 1
   isGrounded: 1
   attacking: 0
+  Object: {fileID: 0}
 --- !u!1001 &258351750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -416,6 +417,7 @@ MonoBehaviour:
   worldSpace: 1
   isGrounded: 1
   attacking: 0
+  Object: {fileID: 0}
 --- !u!1 &441955607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1531,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9e4f9a624816346853855ae37cfd9f, type: 3}
+--- !u!1 &1192624548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7609828253002326640, guid: dd9d3d7655ac3934d9096722ca483868, type: 3}
+  m_PrefabInstance: {fileID: 484748063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1202585895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1978,6 +1985,7 @@ MonoBehaviour:
   worldSpace: 1
   isGrounded: 1
   attacking: 0
+  Object: {fileID: 1192624548}
 --- !u!95 &1330092475
 Animator:
   serializedVersion: 5
